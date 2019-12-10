@@ -7,19 +7,28 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
+    public static ChromeDriver driver;
 
-    public Driver loginWithCookie(){
+    public static void loginWithCookie(){
         String url="http://t0st.ytzq.com:8443/web/html/account/myAccount/index.html";
-        ChromeOptions chromeOptions=new ChromeOptions();
-        chromeOptions.setCapability("pageLoadStrategy", "none");
+//        ChromeOptions chromeOptions=new ChromeOptions();
+//        chromeOptions.setCapability("pageLoadStrategy", "none");
 
-        ChromeDriver driver=new ChromeDriver(chromeOptions);
+        driver=new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
         driver.get(url);
         driver.manage().window().maximize();
 
-        driver.manage().addCookie(new Cookie("sso_cookie", "3o%2F%2BqYJWo0hM8VKiISsYJw%2F5EGb%2F620DsmiWlGKvqCmv%2F9d%2By1YUPnNnWdclVI%2FB9dZ4lf%2F8xnjQ%0AHq8AFRx5hpIBm1TwcMvLnQPHRjQBisBcLvvvCVzBm07DacDGlKcrhakStUVNyQrVGZXkelf3hJup%0Ajdg6puJYhMeS6NuTxOX8TnmNd7SJcu1wmu%2Bu3KFGk06epgN%2FggvaqFraryx5fTYXKvFo2Pb70zW4%0ALFfxZSzgg7C3jeZm9hNfGGFNTsCH7BnSqseQBDxt2A7rMSRw9jowy5BQaAd%2BmruGdClg2qTO46AK%0AP5NYSYlvkPKWy9uwF0%2FERaNprhpY8W%2Fd%2FFGyT1kxLLW1AP2TQf77bt6lPCyiwCpYzqTEXYHutiby%0A8Ym6z9n%2BFWfzATF1Kyyl%2FCAb%2FE1QG%2F2fZY%2FqeZWA0URuraO75JsNUxxKMa9SCOyySKQG4nbYlwdp%0A%2B7jBarzVZuRK91Ve%2Bb9rhPc%2Fw0E7i741T9lsaAO%2FLyGNuAmlSZ%2FHaz0WJMPQQR4tz6vKvy%2BO6K8Q%0Ay1pK6OSUBFnMOFXL5DLCiYI7TCWKYCiDcYv6NWRVkcJXLUaiUB12a%2FzDVJAfGNirKx0N8gl9M6Jo%0Aea9Pc%2FZwKF%2FJVQRjuDq2%2FIbcK7BXmqetpTkwXDhPwXJAqZjBGm%2BVsmZ4kO1Lyj8eibXlVBulompu%0A2KIm554q5r55FjxwL8jmERFd%2F7eJa7y6AiXgoNF8hacWWnUfVqonnBm3DxppeFVvYR81XcE%2B1rZZ%0AGzRQ%2BMe7%2BYmKXFjEsSh%2F%2FcxqS4%2B5GNwQuzEakpI3eci4rOQ5CAcmC59nK8ZmESvzQCCQDL8jrWV8%0Al4TRvfx1W8ydeNMAGrofjkpsa%2BlfhjTU%2BrmQFwd9kB9DFIrtEhdXfRNkaehfgXrdLhp5F6Ya%2BAfw%0AGTAi8XL%2BCS90YnmmLpu04tMO4gRalgx20qXsSXErZFCaxUVG0zW4LFfxZSx7rnyoNowlLdKi8OdQ%0AK8X5lgTDLGoWlWXszdzfSNneGaLQmCW%2F9IfdY2XxlQ1cXqW%2BWiQUUxXTkLwkD9gwQjqs34FDfg%2F2%0Ao6bJH9rFfZo924Pfj9BT9uy9YKoKbBUHI509N9P1xj8DS%2FDuDzVzhuGTn0S9RMxeP8bg%2FqEMTJ4L%0A6nqPEhfek0gId0nWVqkuiWc%3D"));
+        driver.manage().addCookie(new Cookie("sso_cookie", "3o%2F%2BqYJWo0hM8VKiISsYJw%2F5EGb%2F620DsmiWlGKvqCmv%2F9d%2By1YUPnNnWdclVI%2FB9dZ4lf%2F8xnjQ%0AHq8AFRx5hpIBm1TwcMvLnQPHRjQBisBcLvvvCVzBmy%2B1jHXe3Y4pysSbfpKA2Met0U3%2FNwO8NWj7%0A0nNJcGuOGqBI7FLfMkg7SSvVUtLu7fln4gZXO%2BQe1mRBE3CFBWLFUqN2d8Qw9JBQhkKSMGDNx4HP%0AZXfnRY%2B04YajrzXRM9xKZee4HMAgyH9xcIDYCt6aHvbqgpFnBdg9qPwxoeEcaZpTtbD2Aa3JHxso%0A2bFSU4WUpqyWkJ6KB4mZPAFLNHP54r6BITMBZNcDFFsgrt%2BlEUBq9Y27xDCkxWKipSv1SJbH9RF3%0AKJ5HOPH8CbVPwpkmGt6DVyTNdsUJepjkBnquluaD3Uwflxj9KjEKORoLAJarg7QQMBiOTtGIwlyL%0AnFKisaI%2BPufcKKdnUUhIMg0i78Akc%2BPXo6t2QOIyXSrxta78RqbcEoP52jtYlqWfPo7YpfM1R%2BwV%0AvibS5CQ47VdCoE7o96Tifi%2B3OND1w%2B4Or6dfBMmmWnD8mZotbgXCDRBnRDBmBJ%2Bf9l7SifFZ%2BdQU%0A1iFCDK3ttMmBet0uGnkXpmwMx%2FxZEkywoi66v0T9xEn4v6WH%2B5tYqbQvGkkxoehMkU2oszCK5yqu%0A0RZ5Ej0h4%2FDJR%2B0ldGS1eev1uzhVvyvwagdz9j753p6r67GlreXAqPlFg07vDR8I4Au3YVVJIs3Z%0AdYsPwY6OIqWsAJDuMy4qBc1iQ3CwDpbiQS1FXbV1UN%2BatsSd8zsNnYLg0OMx3GEwvY%2BmjQofpzpA%0A1BsdWYu3nBR61jiJh6PFYyB9ctk0o3HWko%2B1GpsWP7g2YZnXYGA%2BBwNJhUYQkZJA039P4%2B95WtkC%0AFmMYbU3%2BrtmytWae6hKvG1SsDSLen99PEGw2rxdmtatrICj6hMeS6NuTxOXklh91DhTofXKCFQFT%0ANvGEwlM9WsxCr67tCODWZfNExymihOo0YYtiEl9u4RNJotUQDHj%2BTYCteyZu8TrdeyNSoCoZSqp9%0AxZwLnga5CHbIkFDe8O8SbrHZrUO5Dh2cB9nWSZAEHU7VlbrhdPVdopm%2FcrwbyKZ7n3ZHOH3kgsAA%0AeDf1bLPsYv%2F74HwFtwd4mHI%3D"));
         driver.navigate().refresh();
-        return this;
+    }
+
+    public static void quit() throws InterruptedException {
+        Thread.sleep(10000);
+        driver.quit();
+    }
+
+    public static ChromeDriver getDriver(){
+        return driver;
     }
 }
