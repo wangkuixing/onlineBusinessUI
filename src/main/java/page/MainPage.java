@@ -6,7 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.Random;
 
 public class MainPage extends BaseFunction{
-    String message;
+    String message1;
+    String message2;
 
     public static MainPage start(){
         Driver.loginWithCookie();
@@ -23,13 +24,13 @@ public class MainPage extends BaseFunction{
         int random=ra.nextInt(1000) + 1;
 
         findElement(By.cssSelector("#updateAccount > a")).click();
-        findElement(By.id("email")).sendKeys("test@gmail.com");
+        overrideKeys(By.id("email"), "test@gmail.com");
 
         select(By.id("province"));
         select(By.id("city"));
 
-        findElement(By.id("address")).sendKeys("深圳湾" + random + "号");
-        findElement(By.id("workplace")).sendKeys("银行");
+        overrideKeys(By.id("address"), "深圳湾" + random + "号");
+        overrideKeys(By.id("workplace"), "银行");
 
         select(By.id("position_a"));
         select(By.id("education"));
@@ -42,13 +43,34 @@ public class MainPage extends BaseFunction{
         findElement(By.id("btn_kb")).click();
         findElement(By.id("password")).sendKeys("123321");
         findElement(By.cssSelector(".password_sure")).click();
-        message=findElement(By.id("showErrorInfo")).getText();
+        message1=findElement(By.id("showErrorInfo")).getText();
 
         findElement(By.id("alert_btn")).click();
         return this;
     }
 
-    public String getMessage(){
-        return message;
+    public MainPage standbyContact() {
+        Random ra = new Random();
+        int random = ra.nextInt(1000) + 1;
+
+        findElement(By.cssSelector("#updateAccount > a")).click();
+        overrideKeys(By.id("standby_name"), "tony");
+        overrideKeys(By.id("standby_phone"), "13823342" + random);
+
+        findElement(By.id("changeStandby")).click();
+        findElement(By.id("btn_kb")).click();
+        findElement(By.id("password")).sendKeys("123321");
+        findElement(By.cssSelector(".password_sure")).click();
+        message2=findElement(By.id("showErrorInfo")).getText();
+        findElement(By.id("alert_btn")).click();
+        return this;
+    }
+
+    public String getMessage1(){
+        return message1;
+    }
+
+    public String getMessage2(){
+        return message2;
     }
 }

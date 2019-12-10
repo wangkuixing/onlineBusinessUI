@@ -4,10 +4,12 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import lombok.extern.slf4j.Slf4j;
+
 import page.Driver;
 import page.MainPage;
-import sun.rmi.rmic.newrmic.Main;
 
+@Slf4j
 public class PersonalDataTest {
     static MainPage mainPage;
 
@@ -24,8 +26,14 @@ public class PersonalDataTest {
     @Test
     public void modifyData(){
         mainPage.personalData();
-        String message=mainPage.getMessage();
+        String message=mainPage.getMessage1();
         assertThat(message, equalTo("修改成功"));
+    }
 
+    @Test
+    public void standbyContact(){
+        mainPage.standbyContact();
+        String message=mainPage.getMessage2();
+        assertThat(message, equalTo("修改成功"));
     }
 }
