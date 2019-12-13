@@ -14,8 +14,9 @@ public class PersonalDataTest {
     static MainPage mainPage;
 
     @BeforeAll
-    public static void login(){
+    public static void login() throws InterruptedException {
         mainPage=MainPage.start();
+        Thread.sleep(5000);
     }
 
     @AfterAll
