@@ -8,3 +8,9 @@
 * selenium2
 * junit5:测试用例执行
 * allure2:自动生成测试报告
+* jenkins:CI
+* gitlab:代码仓库（私有化部署）
+
+## 运行
+
+代码上传至gitlab，通过jenkins作业化执行，执行完成后生成allure report
