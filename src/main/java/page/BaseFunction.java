@@ -2,6 +2,7 @@ package page;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -17,11 +18,11 @@ public class BaseFunction {
     }
 
     public WebElement findElement(By by, int timeout){
+        //debug
+        System.out.println(by.toString());
         if (timeout > 0){
             waitClickable(by, timeout);
         }
-        //debug
-        System.out.println(by.toString());
         return Driver.getDriver().findElement(by);
     }
 
@@ -31,8 +32,8 @@ public class BaseFunction {
         findElement(by).sendKeys(key);
     }
 
-    public void clear(){
-
+    public void scroll(int start, int end){
+        ((JavascriptExecutor)(Driver.getDriver())).executeScript("window.scrollTo(" + start + ","+ end + ")");
     }
 
     public void waitClickable(By by, int timeout){
@@ -43,6 +44,17 @@ public class BaseFunction {
         waitClickable(by, 5);
         Select select=new Select(findElement(by));
         select.selectByIndex(1);
+    }
+
+    public void enableKeyboard(By by){
+        findElement(by).click();
+        findElement(By.cssSelector(".button_kb")).click();
+    }
+
+    //封装显式等待
+    public static WebElement waituntil(By locator){
+        WebDriverWait wait=new WebDriverWait(Driver.getDriver(),10);
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
 }

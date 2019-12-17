@@ -28,7 +28,7 @@ public class PasswdChangeTest {
     }
 
     @Test
-    public void fundPwd(){
+    public void fundPwd() throws InterruptedException{
         mainPage.fundPwd();
         String message=mainPage.getMessage4();
         assertThat(message, equalTo("修改成功，请妥善保管新密码！"));

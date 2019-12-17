@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import page.MainPage;
 
@@ -20,6 +21,7 @@ public class MyServiceTest {
         mainPage.stop();
     }
 
+    @Order(1)
     @Test
     public void myService(){
         mainPage.myService();
@@ -27,6 +29,7 @@ public class MyServiceTest {
         assertThat(message7, equalTo("订单号"));
     }
 
+    @Order(2)
     @Test
     public void tradeRecord() throws InterruptedException {
         mainPage.tradeRecord();

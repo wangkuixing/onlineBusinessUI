@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import page.MainPage;
 
@@ -20,6 +21,7 @@ public class AgreementTest {
         mainPage.stop();
     }
 
+    @Order(1)
     @Test
     public void agreementQuery() throws InterruptedException {
         mainPage.agreementQuery();
@@ -29,6 +31,7 @@ public class AgreementTest {
         assertThat(message10, equalTo("下一步"));
     }
 
+    @Order(2)
     @Test
     public void signedAgreement() throws InterruptedException {
         mainPage.signedAgreement();

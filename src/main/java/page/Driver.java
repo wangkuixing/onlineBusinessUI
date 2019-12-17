@@ -15,7 +15,7 @@ public class Driver {
         chromeOptions.setCapability("pageLoadStrategy", "none");
 
         driver=new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(url);
         driver.manage().window().maximize();
 

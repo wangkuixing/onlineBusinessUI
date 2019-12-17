@@ -1,12 +1,11 @@
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import lombok.extern.slf4j.Slf4j;
-
-import page.Driver;
 import page.MainPage;
 
 @Slf4j
@@ -24,6 +23,7 @@ public class PersonalDataTest {
         mainPage.stop();
     }
 
+    @Order(1)
     @Test
     public void modifyData(){
         mainPage.personalData();
@@ -31,6 +31,7 @@ public class PersonalDataTest {
         assertThat(message, equalTo("修改成功"));
     }
 
+    @Order(2)
     @Test
     public void standbyContact(){
         mainPage.standbyContact();

@@ -22,7 +22,10 @@ public class MainPage extends BaseFunction{
     String message14;
     String message15;
     String message16;
-
+    String message17;
+    String message18;
+    String message19;
+    String message20;
 
     public static MainPage start(){
         Driver.loginWithCookie();
@@ -82,23 +85,53 @@ public class MainPage extends BaseFunction{
     }
 
     public MainPage tradePwd(){
-        findElement(By.cssSelector(".on > a")).click();
-        findElement(By.linkText("交易密码修改")).click();
+        findElement(By.cssSelector(".person_list:nth-child(2) .muneLi1:nth-child(4) > a")).click();
+        findElement(By.cssSelector("#mdfTradePwd > a")).click();
+        enableKeyboard(By.id("oldpwd"));
         findElement(By.id("oldpwd")).sendKeys("123321");
+        enableKeyboard(By.id("newpwd"));
         findElement(By.id("newpwd")).sendKeys("456654");
+        enableKeyboard(By.id("confirm_newpwd"));
         findElement(By.id("confirm_newpwd")).sendKeys("456654");
         findElement(By.linkText("确   定")).click();
         message3=findElement(By.id("showErrorInfo")).getText();
         findElement(By.id("alert_btn")).click();
+
+        //recover
+        findElement(By.cssSelector("#mdfTradePwd > a")).click();
+        enableKeyboard(By.id("oldpwd"));
+        findElement(By.id("oldpwd")).sendKeys("456654");
+        enableKeyboard(By.id("newpwd"));
+        findElement(By.id("newpwd")).sendKeys("123321");
+        enableKeyboard(By.id("confirm_newpwd"));
+        findElement(By.id("confirm_newpwd")).sendKeys("123321");
+        findElement(By.linkText("确   定")).click();
+        findElement(By.id("alert_btn")).click();
         return this;
     }
 
-    public MainPage fundPwd(){
-        findElement(By.cssSelector(".on > a")).click();
-        findElement(By.linkText("资金密码修改")).click();
+    public MainPage fundPwd() throws InterruptedException {
+        findElement(By.cssSelector(".person_list:nth-child(2) .muneLi1:nth-child(4) > a")).click();
+        findElement(By.cssSelector("#mdfFundPwd > a")).click();
+        enableKeyboard(By.id("oldpwd"));
         findElement(By.id("oldpwd")).sendKeys("123321");
+        enableKeyboard(By.id("newpwd"));
         findElement(By.id("newpwd")).sendKeys("456654");
+        enableKeyboard(By.id("confirm_newpwd"));
         findElement(By.id("confirm_newpwd")).sendKeys("456654");
+        findElement(By.linkText("确   定")).click();
+        message4=findElement(By.id("showErrorInfo")).getText();
+        findElement(By.id("alert_btn")).click();
+
+        //recover
+        findElement(By.cssSelector("#mdfFundPwd > a")).click();
+        waituntil(By.id("oldpwd"));
+        enableKeyboard(By.id("oldpwd"));
+        findElement(By.id("oldpwd")).sendKeys("456654");
+        enableKeyboard(By.id("newpwd"));
+        findElement(By.id("newpwd")).sendKeys("123321");
+        enableKeyboard(By.id("confirm_newpwd"));
+        findElement(By.id("confirm_newpwd")).sendKeys("123321");
         findElement(By.linkText("确   定")).click();
         message4=findElement(By.id("showErrorInfo")).getText();
         findElement(By.id("alert_btn")).click();
@@ -152,6 +185,81 @@ public class MainPage extends BaseFunction{
         return this;
     }
 
+    public MainPage gemPermission() {
+        scroll(0, 800);
+        findElement(By.cssSelector("#qxgl > a")).click();
+        findElement(By.cssSelector("#cybLi > a")).click();
+        message12=findElement(By.cssSelector(".sign_success > dd")).getText();
+        //您已有创业板交易权限！
+        return this;
+    }
+
+    public MainPage hkPermission() {
+        scroll(0, 800);
+        findElement(By.cssSelector("#qxgl > a")).click();
+        findElement(By.cssSelector("#hk_stk_trd_auth_sign > a")).click();
+        message13=findElement(By.cssSelector(".hk_tips_show > p:nth-child(1)")).getText();
+        //您的沪港通、深港通权限已开通！
+        return this;
+    }
+
+    public MainPage bank() {
+        findElement(By.cssSelector("#sfcg > a")).click();
+        message14=findElement(By.cssSelector(".bankName")).getText();
+        message15=findElement(By.cssSelector(".cardCode")).getText();
+        //工商银行 尾号0003
+        return this;
+    }
+
+    public MainPage tradePermission() {
+        findElement(By.cssSelector("#jyqx > a")).click();
+        findElement(By.cssSelector("#mobileCode a")).click();
+        message16=findElement(By.id("showErrorInfo")).getText();
+        //已开通网上交易，如需关闭请到柜台办理！
+        findElement(By.id("alert_btn")).click();
+        findElement(By.cssSelector("#shAlert a")).click();
+        findElement(By.id("popup_protocol_btn")).click();
+        findElement(By.id("popup_protocol_btn")).click();
+        message17=findElement(By.cssSelector("#shAlert a")).getText();
+        //开通成功
+        return this;
+    }
+
+    public MainPage amountChange() throws InterruptedException {
+        findElement(By.cssSelector("#rzrq > a")).click();
+        findElement(By.cssSelector("#amount_change > a")).click();
+        findElement(By.id("btn_kb")).click();
+        findElement(By.id("password")).sendKeys("123321");
+        findElement(By.cssSelector(".passwordSure")).click();
+        Thread.sleep(5000);
+        findElement(By.id("fundNum")).sendKeys("300");
+        findElement(By.id("nextButton")).click();
+        Thread.sleep(3000);
+        message18=findElement(By.cssSelector(".sign_success > dd:nth-child(2)")).getText();
+        //您的业务申请已受理！
+        //取消申请
+        findElement(By.cssSelector("#rzrq > a")).click();
+        findElement(By.cssSelector("#amount_change > a")).click();
+        findElement(By.id("cancelApout")).click();
+        findElement(By.cssSelector(".sign_success > dd"));
+        return this;
+    }
+
+    public MainPage contractRenewal() {
+        findElement(By.cssSelector("#rzrq > a")).click();
+        findElement(By.cssSelector("#rzrq_contract > a")).click();
+        message19=findElement(By.cssSelector("tr:nth-child(2) > td:nth-child(12)")).getText();
+        //不可展期
+        return this;
+    }
+
+    public MainPage suggestion() {
+        findElement(By.cssSelector("#sug_attend > a")).click();
+        message20=findElement(By.cssSelector("#suggest_attend .sug_tips_box > span")).getText();
+        //资产两融条件满足（适当）
+        return this;
+    }
+
     public String getMessage1(){
         return message1;
     }
@@ -187,5 +295,29 @@ public class MainPage extends BaseFunction{
     }
     public String getMessage12(){
         return message12;
+    }
+    public String getMessage13(){
+        return message13;
+    }
+    public String getMessage14(){
+        return message14;
+    }
+    public String getMessage15(){
+        return message15;
+    }
+    public String getMessage16(){
+        return message16;
+    }
+    public String getMessage17(){
+        return message17;
+    }
+    public String getMessage18(){
+        return message18;
+    }
+    public String getMessage19(){
+        return message19;
+    }
+    public String getMessage20(){
+        return message20;
     }
 }
