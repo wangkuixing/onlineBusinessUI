@@ -10,7 +10,7 @@ public class Driver {
     public static ChromeDriver driver;
 
     public static void loginWithCookie(){
-        String url="http://t0st.ytzq.com:8443/web/html/account/myAccount/index.html";
+        String url="url";
         ChromeOptions chromeOptions=new ChromeOptions();
         chromeOptions.setCapability("pageLoadStrategy", "none");
 
